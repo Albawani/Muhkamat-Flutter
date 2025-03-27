@@ -53,7 +53,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
       _currentPosition!.latitude,
       _currentPosition!.longitude,
     );
-    final params = CalculationMethod.umm_al_qura.getParameters();
+    final params = CalculationMethod.turkey.getParameters();
     final prayerTimes = PrayerTimes.today(coordinates, params);
 
     setState(() {
@@ -74,7 +74,6 @@ class _PrayerScreenState extends State<PrayerScreen> {
                 ? CircularProgressIndicator()
             :
             Table(
-              border: TableBorder.all(color: Colors.grey),
               columnWidths: {0: FlexColumnWidth(2), 1: FlexColumnWidth(3)},
               children: [
                 _buildRow("Fajr", _prayerTimes!.fajr),
@@ -93,14 +92,12 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
   TableRow _buildRow(String prayerName, DateTime time) {
     return TableRow(children: [
-      Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Text(prayerName, style: TextStyle(fontSize: 18)),
+      Center(
+          child: Text(prayerName, style: TextStyle(fontSize: 18))
       ),
-      Padding(
-        padding: EdgeInsets.all(8.0),
+      Center(
         child: Text("${time.hour}:${time.minute.toString().padLeft(2, '0')}",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
       ),
     ]);
   }
